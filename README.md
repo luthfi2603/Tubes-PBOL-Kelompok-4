@@ -1,4 +1,4 @@
-<h2>Tubes WS Kelompok 4</h2>
+<h2>Tubes PBOL Kelompok 4</h2>
 <p>
     Anggota Kelompok :
     <ol>
