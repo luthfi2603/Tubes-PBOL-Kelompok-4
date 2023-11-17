@@ -1,0 +1,94 @@
+START TRANSACTION;
+
+CREATE TABLE `dosen` (
+  `kode_dosen` char(3) NOT NULL,
+  `nama_dosen` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `jadwal` (
+  `id_kelas` int(10) UNSIGNED NOT NULL,
+  `kode_matkul` char(7) NOT NULL,
+  `kode_dosen` char(3) NOT NULL,
+  `kode_ruangan` char(5) NOT NULL,
+  `jam` char(11) NOT NULL,
+  `hari` enum('Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `kelas` (
+  `id_kelas` int(10) UNSIGNED NOT NULL,
+  `semester` char(1) NOT NULL,
+  `kom` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `mata_kuliah` (
+  `kode_matkul` char(7) NOT NULL,
+  `nama_matkul` varchar(255) NOT NULL,
+  `sks` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `ruangan` (
+  `kode_ruangan` char(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `dosen`
+  ADD PRIMARY KEY (`kode_dosen`);
+
+ALTER TABLE `jadwal`
+  ADD KEY `fk_kelas` (`id_kelas`),
+  ADD KEY `fk_dosen` (`kode_dosen`),
+  ADD KEY `fk_mata_kuliah` (`kode_matkul`),
+  ADD KEY `fk_ruangan` (`kode_ruangan`);
+
+ALTER TABLE `kelas`
+  ADD PRIMARY KEY (`id_kelas`);
+
+ALTER TABLE `mata_kuliah`
+  ADD PRIMARY KEY (`kode_matkul`);
+
+ALTER TABLE `ruangan`
+  ADD PRIMARY KEY (`kode_ruangan`);
+
+ALTER TABLE `kelas`
+  MODIFY `id_kelas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+ALTER TABLE `jadwal`
+  ADD CONSTRAINT `fk_dosen` FOREIGN KEY (`kode_dosen`) REFERENCES `dosen` (`kode_dosen`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_kelas` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_mata_kuliah` FOREIGN KEY (`kode_matkul`) REFERENCES `mata_kuliah` (`kode_matkul`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_ruangan` FOREIGN KEY (`kode_ruangan`) REFERENCES `ruangan` (`kode_ruangan`) ON UPDATE CASCADE;
+
+COMMIT;
+
+INSERT INTO ruangan VALUES ('C-101'),('C-102'),('C-103'),('C-104'),('C-105'),('C-106');
+
+INSERT INTO kelas VALUES
+(NULL, '1', 'A'),
+(NULL, '1', 'B'),
+(NULL, '1', 'C'),
+(NULL, '3', 'A'),
+(NULL, '3', 'B'),
+(NULL, '3', 'C'),
+(NULL, '5', 'A'),
+(NULL, '5', 'B'),
+(NULL, '5', 'C'),
+(NULL, '7', 'A'),
+(NULL, '7', 'B'),
+(NULL, '7', 'C');
+
+INSERT INTO mata_kuliah VALUES
+('TIF2101', 'Matematika Diskrit', '3'),
+('TIF2102', 'Komunikasi Data dan Jaringan Komputer', '2'),
+('TIF2104', 'Manajemen Sistem Basis Data', '3'),
+('TIF2106', 'Pemrograman Berorientasi Objek Lanjutan', '3'),
+('TIF2108', 'Web Semantik', '3');
+
+INSERT INTO dosen VALUES
+('DDA', 'Dedy Arisandi, S.T., M.Kom.'),
+('MLY', 'Maulida Yanti, S.Si., M.Si'),
+('NSK', 'Niskarto Zendrato, S.Kom., M.Kom.'),
+('ANN', 'Annisa Fadhillah Pulungan, S.Kom., M.Kom.'),
+('UMY', 'Umaya Ramadhani Putri Nasution, S.Ti., M.Kom.');
+
+INSERT INTO jadwal VALUES
+(6, 'TIF2101', 'MLY', 'C-102', '10:30-13:00', 'Kamis');
+(, '', '', '', '', ''),
