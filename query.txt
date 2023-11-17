@@ -90,5 +90,22 @@ INSERT INTO dosen VALUES
 ('UMY', 'Umaya Ramadhani Putri Nasution, S.Ti., M.Kom.');
 
 INSERT INTO jadwal VALUES
-(6, 'TIF2101', 'MLY', 'C-102', '10:30-13:00', 'Kamis');
-(, '', '', '', '', ''),
+-- (6, 'TIF2104', 'DDA', 'C-105', '10:30-13:00', 'Rabu'),
+-- (6, 'TIF2108', 'ANN', 'C-102', '13:50-16:20', 'Rabu'),
+-- (6, 'TIF2102', 'NSK', 'C-105', '08:50-09:40', 'Kamis'),
+-- (6, 'TIF2101', 'MLY', 'C-102', '10:30-13:00', 'Kamis'),
+-- (6, 'TIF2106', 'UMY', 'C-103', '13:50-16:20', 'Kamis');
+
+DROP VIEW IF EXISTS gabungan;
+CREATE VIEW gabungan AS
+SELECT
+    a.*,
+    b.semester,
+    b.kom,
+    c.nama_matkul,
+    c.sks,
+    d.nama_dosen
+FROM jadwal a
+INNER JOIN kelas b ON a.id_kelas = b.id_kelas
+INNER JOIN mata_kuliah c ON a.kode_matkul = c.kode_matkul
+INNER JOIN dosen d ON a.kode_dosen = d.kode_dosen
