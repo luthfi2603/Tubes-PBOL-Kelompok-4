@@ -83,11 +83,18 @@ INSERT INTO mata_kuliah VALUES
 ('TIF2108', 'Web Semantik', '3');
 
 INSERT INTO dosen VALUES
-('DDA', 'Dedy Arisandi, S.T., M.Kom.'),
-('MLY', 'Maulida Yanti, S.Si., M.Si'),
-('NSK', 'Niskarto Zendrato, S.Kom., M.Kom.'),
-('ANN', 'Annisa Fadhillah Pulungan, S.Kom., M.Kom.'),
-('UMY', 'Umaya Ramadhani Putri Nasution, S.Ti., M.Kom.');
+-- ('DDA', 'Dedy Arisandi, S.T., M.Kom.'),
+-- ('MLY', 'Maulida Yanti, S.Si., M.Si'),
+-- ('NSK', 'Niskarto Zendrato, S.Kom., M.Kom.'),
+-- ('ANN', 'Annisa Fadhillah Pulungan, S.Kom., M.Kom.'),
+-- ('UMY', 'Umaya Ramadhani Putri Nasution, S.Ti., M.Kom.'),
+('AGH', 'Aghni Syahmarani, S.Si., M.Si.'),
+('ROZ', 'Fahrurozi Lubis, B.IT., M.Sc.IT.'),
+('SEF', 'Dr. Syahril Efendi, S.Si., M.IT.'),
+('SNM', 'Seniman, S.Kom., M.Kom.'),
+('SRH', 'Sarah Purnamawat, S.T., M.Sc.'),
+('SWL', 'Dr. Sawaluddin, M.IT.'),
+('VEN', 'Dr. Marischa Elveny, S.Ti., M.Kom.');
 
 INSERT INTO jadwal VALUES
 -- (6, 'TIF2104', 'DDA', 'C-105', '10:30-13:00', 'Rabu'),
@@ -95,6 +102,16 @@ INSERT INTO jadwal VALUES
 -- (6, 'TIF2102', 'NSK', 'C-105', '08:50-09:40', 'Kamis'),
 -- (6, 'TIF2101', 'MLY', 'C-102', '10:30-13:00', 'Kamis'),
 -- (6, 'TIF2106', 'UMY', 'C-103', '13:50-16:20', 'Kamis');
+(4, 'TIF2104', 'DDA', 'C-105', '08:00-10:30', 'Rabu'),
+(4, 'TIF2101', 'AGH', 'C-105', '13:50-16:20', 'Kamis'),
+(4, 'TIF2106', 'SWL', 'C-104', '08:00-10:30', 'Jumat'),
+(4, 'TIF2102', 'ROZ', 'C-104', '10:30-12:10', 'Jumat'),
+(4, 'TIF2108', 'VEN', 'C-102', '13:50-16:20', 'Jumat'),
+(5, 'TIF2106', 'SWL', 'C-103', '10:30-13:00', 'Rabu'),
+(5, 'TIF2101', 'SEF', 'C-101', '13:50-16:20', 'Rabu'),
+(5, 'TIF2104', 'SRH', 'C-104', '13:50-16:20', 'Kamis'),
+(5, 'TIF2108', 'ANN', 'C-105', '08:00-10:30', 'Jumat'),
+(5, 'TIF2102', 'SNM', 'C-103', '13:50-15:30', 'Jumat');
 
 DROP VIEW IF EXISTS gabungan;
 CREATE VIEW gabungan AS
