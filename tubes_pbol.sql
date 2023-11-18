@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2023 at 11:18 AM
+-- Generation Time: Nov 18, 2023 at 04:54 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -37,11 +37,38 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`kode_dosen`, `nama_dosen`) VALUES
+('AGH', 'Aghni Syahmarani, S.Si., M.Si.'),
 ('ANN', 'Annisa Fadhillah Pulungan, S.Kom., M.Kom.'),
 ('DDA', 'Dedy Arisandi, S.T., M.Kom.'),
 ('MLY', 'Maulida Yanti, S.Si., M.Si'),
 ('NSK', 'Niskarto Zendrato, S.Kom., M.Kom.'),
-('UMY', 'Umaya Ramadhani Putri Nasution, S.Ti., M.Kom.');
+('ROZ', 'Fahrurozi Lubis, B.IT., M.Sc.IT.'),
+('SEF', 'Dr. Syahril Efendi, S.Si., M.IT.'),
+('SNM', 'Seniman, S.Kom., M.Kom.'),
+('SRH', 'Sarah Purnamawat, S.T., M.Sc.'),
+('SWL', 'Dr. Sawaluddin, M.IT.'),
+('UMY', 'Umaya Ramadhani Putri Nasution, S.Ti., M.Kom.'),
+('VEN', 'Dr. Marischa Elveny, S.Ti., M.Kom.');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `gabungan`
+-- (See below for the actual view)
+--
+CREATE TABLE `gabungan` (
+`id_kelas` int(10) unsigned
+,`kode_matkul` char(7)
+,`kode_dosen` char(3)
+,`kode_ruangan` char(5)
+,`jam` char(11)
+,`hari` enum('Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu')
+,`semester` char(1)
+,`kom` char(1)
+,`nama_matkul` varchar(255)
+,`sks` char(1)
+,`nama_dosen` varchar(255)
+);
 
 -- --------------------------------------------------------
 
@@ -63,7 +90,21 @@ CREATE TABLE `jadwal` (
 --
 
 INSERT INTO `jadwal` (`id_kelas`, `kode_matkul`, `kode_dosen`, `kode_ruangan`, `jam`, `hari`) VALUES
-(6, 'TIF2101', 'MLY', 'C-102', '10:30-13:00', 'Kamis');
+(6, 'TIF2101', 'MLY', 'C-102', '10:30-13:00', 'Kamis'),
+(6, 'TIF2104', 'DDA', 'C-105', '10:30-13:00', 'Rabu'),
+(6, 'TIF2108', 'ANN', 'C-102', '13:50-16:20', 'Rabu'),
+(6, 'TIF2102', 'NSK', 'C-105', '08:50-09:40', 'Kamis'),
+(6, 'TIF2106', 'UMY', 'C-103', '13:50-16:20', 'Kamis'),
+(4, 'TIF2104', 'DDA', 'C-105', '08:00-10:30', 'Rabu'),
+(4, 'TIF2101', 'AGH', 'C-105', '13:50-16:20', 'Kamis'),
+(4, 'TIF2106', 'SWL', 'C-104', '08:00-10:30', 'Jumat'),
+(4, 'TIF2102', 'ROZ', 'C-104', '10:30-12:10', 'Jumat'),
+(4, 'TIF2108', 'VEN', 'C-102', '13:50-16:20', 'Jumat'),
+(5, 'TIF2106', 'SWL', 'C-103', '10:30-13:00', 'Rabu'),
+(5, 'TIF2101', 'SEF', 'C-101', '13:50-16:20', 'Rabu'),
+(5, 'TIF2104', 'SRH', 'C-104', '13:50-16:20', 'Kamis'),
+(5, 'TIF2108', 'ANN', 'C-105', '08:00-10:30', 'Jumat'),
+(5, 'TIF2102', 'SNM', 'C-103', '13:50-15:30', 'Jumat');
 
 -- --------------------------------------------------------
 
@@ -139,6 +180,15 @@ INSERT INTO `ruangan` (`kode_ruangan`) VALUES
 ('C-104'),
 ('C-105'),
 ('C-106');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `gabungan`
+--
+DROP TABLE IF EXISTS `gabungan`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `gabungan`  AS SELECT `a`.`id_kelas` AS `id_kelas`, `a`.`kode_matkul` AS `kode_matkul`, `a`.`kode_dosen` AS `kode_dosen`, `a`.`kode_ruangan` AS `kode_ruangan`, `a`.`jam` AS `jam`, `a`.`hari` AS `hari`, `b`.`semester` AS `semester`, `b`.`kom` AS `kom`, `c`.`nama_matkul` AS `nama_matkul`, `c`.`sks` AS `sks`, `d`.`nama_dosen` AS `nama_dosen` FROM (((`jadwal` `a` join `kelas` `b` on(`a`.`id_kelas` = `b`.`id_kelas`)) join `mata_kuliah` `c` on(`a`.`kode_matkul` = `c`.`kode_matkul`)) join `dosen` `d` on(`a`.`kode_dosen` = `d`.`kode_dosen`))  ;
 
 --
 -- Indexes for dumped tables
