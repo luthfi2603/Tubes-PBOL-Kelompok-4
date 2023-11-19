@@ -26,7 +26,7 @@ public class View {
                     System.out.println("\nExit");
                     break;
                 default:
-                    System.out.println("Pilihan anda invalid!");
+                    System.out.println("\nPilihan anda invalid!");
                     break;
             }
 

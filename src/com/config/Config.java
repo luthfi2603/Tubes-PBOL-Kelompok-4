@@ -69,7 +69,7 @@ public class Config {
 
         try {
             statement = connect.createStatement();
-            String query = "SELECT * FROM gabungan WHERE hari = '" + hari + "' AND kode_ruangan = '" + ruangan + "' ORDER BY hari, jam";
+            String query = "SELECT * FROM gabungan WHERE hari = '" + hari + "' AND kode_ruangan = '" + ruangan + "' ORDER BY jam";
 
             result = statement.executeQuery(query);
 
