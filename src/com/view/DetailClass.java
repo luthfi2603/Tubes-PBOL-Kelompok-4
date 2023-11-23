@@ -4,19 +4,45 @@
  */
 package com.view;
 
+import com.config.Config;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author HP
  */
 public class DetailClass extends javax.swing.JFrame {
+    // custom code
+    private static ResultSet result;
+    public static String pilihanHari = Config.ubahHari(Config.formattedDate);
 
     /**
      * Creates new form DetailClass
      */
     public DetailClass() {
         initComponents();
+
+        // mendapatkan data dari database
+        try {
+            result = Config.getJadwalPerHariDanRuangan(pilihanHari, Home.ruangan);
+            while(result.next()){
+                // "Jam ", "Kode MK", "Mata Kuliah", "SKS", "Dosen", "Kom", "Semester"
+                String jam = result.getString("jam");
+                String kode_matkul = result.getString("kode_matkul");
+                String nama_matkul = result.getString("nama_matkul");
+                String sks = result.getString("sks");
+                String kode_dosen = result.getString("kode_dosen");
+                String kom = result.getString("kom");
+                String semester = result.getString("semester");
+                Object tblData[] = {jam, kode_matkul, nama_matkul, sks, kode_dosen, kom, semester};
+                DefaultTableModel tblModel = (DefaultTableModel) tblDetail.getModel();
+                tblModel.addRow(tblData);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -28,31 +54,31 @@ public class DetailClass extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        ruanganKelas = new javax.swing.JTextField();
+        cmbHari = new javax.swing.JComboBox<>();
         btnKembali = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabledetail = new javax.swing.JTable();
+        tblDetail = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(143, 192, 169));
 
-        jTextField1.setBackground(new java.awt.Color(250, 243, 221));
-        jTextField1.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(50, 50, 52));
-        jTextField1.setText("Ruangan 101");
+        ruanganKelas.setBackground(new java.awt.Color(250, 243, 221));
+        ruanganKelas.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        ruanganKelas.setForeground(new java.awt.Color(50, 50, 52));
+        ruanganKelas.setText("Ruangan " + Home.ruangan);
 
-        jComboBox1.setBackground(new java.awt.Color(250, 243, 221));
-        jComboBox1.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(50, 50, 52));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(
-                new String[] { "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmbHari.setBackground(new java.awt.Color(250, 243, 221));
+        cmbHari.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        cmbHari.setForeground(new java.awt.Color(50, 50, 52));
+        cmbHari.setModel(new javax.swing.DefaultComboBoxModel<>(
+                new String[] { "Pilih hari", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
+        cmbHari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                hariActionPerformed(evt);
             }
         });
 
@@ -66,38 +92,26 @@ public class DetailClass extends javax.swing.JFrame {
             }
         });
 
-        tabledetail.setBackground(new java.awt.Color(250, 243, 221));
-        tabledetail.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        tabledetail.setForeground(new java.awt.Color(50, 50, 52));
-        tabledetail.setModel(new javax.swing.table.DefaultTableModel(
-            new Object[][] {
-                    { "08.00 - 08.50", "TIF1101", "Pemrograman Berbasis Objek Lanjutan", "3", "MFS", "C", "1" },
-                    { "08.50 - 09.40", "TIF1101", "Pengantar Teknologi Informasi", null, "MFS", "C", "1" },
-                    { "09.40 - 10.30", "TIF1101", "Pengantar Teknologi Informasi", null, "MFS", "C", "1" },
-                    { "10.30 - 11.20", "TIF3110", "Pembelajaran Mesin", "2", "ERN", "B", "5" },
-                    { "11.20 - 13.00", "TIF3110", "Pembelajaran Mesin", null, "ERN", "B", "5" },
-                    { "12.10 - 13.00", "", null, null, null, null, null },
-                    { "13.00 - 13.50", null, null, null, null, null, null },
-                    { "13.50 - 14.40", "TIF2108", "Web Semantik", "3", "VEN", "A", "3" },
-                    { "14.40 - 15.30", "TIF2108", "Web Semantik", null, "VEN", "A", "3" },
-                    { "15.30 - 16.20", "TIF2108", "Web Semantik", null, "VEN", "A", "3" }
-            },
-            new String[] {
-                "Jam ", "Kode MK", "Mata Kuliah", "SKS", "Dosen", "Kelas", "Semester"
-            }
-        ));
-        jScrollPane1.setViewportView(tabledetail);
-        if (tabledetail.getColumnModel().getColumnCount() > 0) {
-            tabledetail.getColumnModel().getColumn(0).setResizable(false);
-            tabledetail.getColumnModel().getColumn(0).setPreferredWidth(150);
-            tabledetail.getColumnModel().getColumn(1).setResizable(false);
-            tabledetail.getColumnModel().getColumn(2).setResizable(false);
-            tabledetail.getColumnModel().getColumn(2).setPreferredWidth(300);
-            tabledetail.getColumnModel().getColumn(3).setResizable(false);
-            tabledetail.getColumnModel().getColumn(3).setPreferredWidth(40);
-            tabledetail.getColumnModel().getColumn(4).setResizable(false);
-            tabledetail.getColumnModel().getColumn(5).setResizable(false);
-            tabledetail.getColumnModel().getColumn(6).setResizable(false);
+        tblDetail.setBackground(new java.awt.Color(250, 243, 221));
+        tblDetail.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        tblDetail.setForeground(new java.awt.Color(50, 50, 52));
+        tblDetail.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][] {},
+                new String[] {
+                        "Jam ", "Kode MK", "Mata Kuliah", "SKS", "Dosen", "Kom", "Semester"
+                }));
+        jScrollPane1.setViewportView(tblDetail);
+        if (tblDetail.getColumnModel().getColumnCount() > 0) {
+            tblDetail.getColumnModel().getColumn(0).setResizable(false);
+            tblDetail.getColumnModel().getColumn(0).setPreferredWidth(150);
+            tblDetail.getColumnModel().getColumn(1).setResizable(false);
+            tblDetail.getColumnModel().getColumn(2).setResizable(false);
+            tblDetail.getColumnModel().getColumn(2).setPreferredWidth(300);
+            tblDetail.getColumnModel().getColumn(3).setResizable(false);
+            tblDetail.getColumnModel().getColumn(3).setPreferredWidth(40);
+            tblDetail.getColumnModel().getColumn(4).setResizable(false);
+            tblDetail.getColumnModel().getColumn(5).setResizable(false);
+            tblDetail.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -130,12 +144,12 @@ public class DetailClass extends javax.swing.JFrame {
                                                 .addGroup(jPanel2Layout
                                                         .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addComponent(jTextField1,
+                                                                .addComponent(ruanganKelas,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                         javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addGap(6, 6, 6)
-                                                                .addComponent(jComboBox1,
+                                                                .addComponent(cmbHari,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE, 87,
                                                                         javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addComponent(btnKembali)))
@@ -150,10 +164,10 @@ public class DetailClass extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        .addComponent(ruanganKelas, javax.swing.GroupLayout.PREFERRED_SIZE,
                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                        .addComponent(cmbHari, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(30, 30, 30)
                                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
@@ -177,8 +191,16 @@ public class DetailClass extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // handling here
+    private void hariActionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            this.setVisible(false);
+            pilihanHari = cmbHari.getSelectedItem().toString();;
+            DetailClass detailClass = new DetailClass();
+            detailClass.setLocationRelativeTo(null);
+            detailClass.setVisible(true);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,11 +216,11 @@ public class DetailClass extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private javax.swing.JButton btnKembali;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbHari;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tabledetail;
+    private javax.swing.JTextField ruanganKelas;
+    private javax.swing.JTable tblDetail;
     // End of variables declaration
 }

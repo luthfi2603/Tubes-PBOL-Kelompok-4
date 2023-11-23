@@ -1,10 +1,7 @@
-// import com.view.View;
-
 import com.view.Home;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        // View.index();
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

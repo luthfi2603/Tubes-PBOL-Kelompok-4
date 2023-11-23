@@ -1,4 +1,5 @@
 package com.config;
+
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -6,6 +7,7 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 public class Config {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/tubes_pbol";
@@ -28,7 +30,7 @@ public class Config {
         try {
             connect = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
         }catch(Exception e){
-            System.out.println("Error : " + e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -62,7 +64,7 @@ public class Config {
         return hari;
     }
 
-    public static String getJadwalPerHariDanRuangan(String hari, String ruangan){
+    public static String getJadwalPerHariDanRuangan1(String hari, String ruangan){
         connection();
 
         String data = "";
@@ -99,8 +101,23 @@ public class Config {
 
         return data;
     }
+    
+    public static ResultSet getJadwalPerHariDanRuangan(String hari, String ruangan){
+        connection();
 
-    public static String getJadwalSaatIni(String jam, String hari, String ruangan){
+        try {
+            statement = connect.createStatement();
+            String query = "SELECT * FROM gabungan WHERE hari = '" + hari + "' AND kode_ruangan = '" + ruangan + "' ORDER BY jam";
+
+            result = statement.executeQuery(query);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return result;
+    }
+
+    public static String getJadwalSaatIni1(String jam, String hari, String ruangan){
         connection();
 
         String data = "";
@@ -129,5 +146,20 @@ public class Config {
         }
 
         return data;
+    }
+    
+    public static ResultSet getJadwalSaatIni(String jam, String hari, String ruangan){
+        connection();
+
+        try {
+            statement = connect.createStatement();
+            String query = "SELECT semester, kom, kode_matkul, kode_dosen FROM gabungan WHERE hari = '" + hari + "' AND kode_ruangan = '" + ruangan + "' AND '" + jam + "' BETWEEN STR_TO_DATE(SUBSTRING_INDEX(jam, '-', 1), '%H:%i') AND STR_TO_DATE(SUBSTRING_INDEX(jam, '-', -1), '%H:%i')";
+
+            result = statement.executeQuery(query);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return result;
     }
 }
