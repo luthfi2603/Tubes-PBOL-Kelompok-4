@@ -64,44 +64,6 @@ public class Config {
         return hari;
     }
 
-    public static String getJadwalPerHariDanRuangan1(String hari, String ruangan){
-        connection();
-
-        String data = "";
-
-        try {
-            statement = connect.createStatement();
-            String query = "SELECT * FROM gabungan WHERE hari = '" + hari + "' AND kode_ruangan = '" + ruangan + "' ORDER BY jam";
-
-            result = statement.executeQuery(query);
-
-            while(result.next()){
-                data += result.getString(1) + " | "
-                + result.getString(2) + " | "
-                + result.getString(3) + " | "
-                + result.getString(4) + " | "
-                + result.getString(5) + " | "
-                + result.getString(6) + " | "
-                + result.getString(7) + " | "
-                + result.getString(8) + " | "
-                + result.getString(9) + " | "
-                + result.getString(10) + " | "
-                + result.getString(11) + "\n";
-            }
-
-            if(data == ""){
-                data = "Kosong\n";
-            }
-
-            statement.close();
-            connect.close();
-        }catch(Exception e){
-            System.out.println("Error : " + e.getMessage());
-        }
-
-        return data;
-    }
-    
     public static ResultSet getJadwalPerHariDanRuangan(String hari, String ruangan){
         connection();
 
@@ -117,37 +79,6 @@ public class Config {
         return result;
     }
 
-    public static String getJadwalSaatIni1(String jam, String hari, String ruangan){
-        connection();
-
-        String data = "";
-
-        try {
-            statement = connect.createStatement();
-            String query = "SELECT semester, kom, kode_matkul, kode_dosen FROM gabungan WHERE hari = '" + hari + "' AND kode_ruangan = '" + ruangan + "' AND '" + jam + "' BETWEEN STR_TO_DATE(SUBSTRING_INDEX(jam, '-', 1), '%H:%i') AND STR_TO_DATE(SUBSTRING_INDEX(jam, '-', -1), '%H:%i')";
-
-            result = statement.executeQuery(query);
-
-            while(result.next()){
-                data += result.getString(1) + " | "
-                + result.getString(2) + " | "
-                + result.getString(3) + " | "
-                + result.getString(4) + "\n";
-            }
-
-            if(data == ""){
-                data = "Kosong\n";
-            }
-
-            statement.close();
-            connect.close();
-        }catch(Exception e){
-            System.out.println("Error : " + e.getMessage());
-        }
-
-        return data;
-    }
-    
     public static ResultSet getJadwalSaatIni(String jam, String hari, String ruangan){
         connection();
 

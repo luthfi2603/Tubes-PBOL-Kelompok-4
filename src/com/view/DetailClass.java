@@ -70,6 +70,7 @@ public class DetailClass extends javax.swing.JFrame {
         ruanganKelas.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
         ruanganKelas.setForeground(new java.awt.Color(50, 50, 52));
         ruanganKelas.setText("Ruangan " + Home.ruangan);
+        ruanganKelas.setEditable(false);
 
         cmbHari.setBackground(new java.awt.Color(250, 243, 221));
         cmbHari.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
@@ -191,7 +192,7 @@ public class DetailClass extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void hariActionPerformed(java.awt.event.ActionEvent evt) {
+    /* private void hariActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             this.setVisible(false);
             pilihanHari = cmbHari.getSelectedItem().toString();;
@@ -199,6 +200,32 @@ public class DetailClass extends javax.swing.JFrame {
             detailClass.setLocationRelativeTo(null);
             detailClass.setVisible(true);
         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } */
+
+    private void hariActionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            pilihanHari = cmbHari.getSelectedItem().toString();
+    
+            DefaultTableModel tblModel = (DefaultTableModel) tblDetail.getModel();
+            tblModel.setRowCount(0);
+    
+            result = Config.getJadwalPerHariDanRuangan(pilihanHari, Home.ruangan);
+            while (result.next()) {
+                String jam = result.getString("jam");
+                String kode_matkul = result.getString("kode_matkul");
+                String nama_matkul = result.getString("nama_matkul");
+                String sks = result.getString("sks");
+                String kode_dosen = result.getString("kode_dosen");
+                String kom = result.getString("kom");
+                String semester = result.getString("semester");
+                Object tblData[] = { jam, kode_matkul, nama_matkul, sks, kode_dosen, kom, semester };
+                tblModel.addRow(tblData);
+            }
+    
+            this.setVisible(true);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
