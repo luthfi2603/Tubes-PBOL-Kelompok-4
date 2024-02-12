@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 public class Config {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/tubes_pbol";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/jadwal_kuliah";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "";
 
@@ -92,5 +92,32 @@ public class Config {
         }
 
         return result;
+    }
+
+    public static int currentDay(String hariIni){
+        int index = 0;
+
+        switch(hariIni){
+            case "Senin":
+                index = 0;
+                break;
+            case "Selasa":
+                index = 1;
+                break;
+            case "Rabu":
+                index = 2;
+                break;
+            case "Kamis":
+                index = 3;
+                break;
+            case "Jumat":
+                index = 4;
+                break;
+            case "Sabtu":
+                index = 5;
+                break;
+        }
+
+        return index;
     }
 }

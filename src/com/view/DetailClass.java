@@ -76,7 +76,8 @@ public class DetailClass extends javax.swing.JFrame {
         cmbHari.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         cmbHari.setForeground(new java.awt.Color(50, 50, 52));
         cmbHari.setModel(new javax.swing.DefaultComboBoxModel<>(
-                new String[] { "Pilih hari", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
+                new String[] { "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" }));
+        cmbHari.setSelectedIndex(Config.currentDay(pilihanHari));
         cmbHari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hariActionPerformed(evt);
@@ -236,6 +237,8 @@ public class DetailClass extends javax.swing.JFrame {
             Home home = new Home();
             home.setLocationRelativeTo(null);
             home.setVisible(true);
+
+            pilihanHari = Config.ubahHari(Config.formattedDate);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
