@@ -101,13 +101,21 @@ INSERT INTO mata_kuliah VALUES
 -- ('TIF4506', 'Teknik Penulisan Karya Ilmiah', '2'),
 -- ('TIF4507', 'Sistem Interaktif', '2'),
 -- ('TIF4508', 'Pembelajaran Mesin Lanjutan', '2'),
--- ('TIF4509', 'Sistem Sensor dan Aplikasi', '2');
-
+-- ('TIF4509', 'Sistem Sensor dan Aplikasi', '2'),
+('TIF4101', 'Manajemen Keamanan Siber', '3'),
+('TIF4102', 'Enterprise Software Development', '2'),
+('TIF4104', 'IT-Preneurship', '3'),
+('TIF4105', 'Keahlian Presentasi dan Komunikasi', '2'),
+('TIF4106', 'Manajemen Proyek Teknologi Informasi', '3'),
+('TIF4107', 'Perilaku Organisasi', '2'),
+('TIF4108', 'Virtual dan Augmented Reality', '2'),
+('TIF4110', 'Pemrosesan dan Analisis Citra Digital', '2'),
+('TIF4112', 'Sistem Sensor dan Aplikasi', '2');
 
 INSERT INTO dosen VALUES
 -- ('MAB', 'Dr. Mohammad Andri Budiman S.T., M.Comp.Sc., M.E.M.'),
 -- ('DDA', 'Dedy Arisandi, S.T., M.Kom.'),
--- ('MLY', 'Maulida Yanti, S.Si., M.Si'),
+('MLY', 'Maulida Yanti, S.Si., M.Si.'),
 -- ('NSK', 'Niskarto Zendrato, S.Kom., M.Kom.'),
 -- ('ANN', 'Annisa Fadhillah Pulungan, S.Kom., M.Kom.'),
 -- ('UMY', 'Umaya Ramadhani Putri Nasution, S.Ti., M.Kom.'),
@@ -132,8 +140,9 @@ INSERT INTO dosen VALUES
 -- ('MAM', 'Dr. Muhammad Anggia Munchtar, ST., MMIT.'),
 -- ('MYD', 'Prof. Drs. Mahyuddin K. M. Nasution, M.IT., Ph.D.'),
 -- ('ROM', 'Romi Fadillah Rahmat, B.IT., M.Sc.IT.'),
--- ('RSS', 'Rossy Nurhasanah, S.Kom., M.Kom');
-
+-- ('RSS', 'Rossy Nurhasanah, S.Kom., M.Kom'),
+('LIA', 'Lia Silviana, S.TI., M.Kom.'),
+('REN', 'Rendra Mahardika, S.Kom., M.Kom.');
 
 INSERT INTO jadwal VALUES
 -- (6, 'TIF2104', 'DDA', 'C-105', '10:30-13:00', 'Rabu'),
@@ -202,7 +211,6 @@ INSERT INTO jadwal VALUES
 -- (12, 'TIF4504', 'ROZ', 'C-104', '14:40-16:20', 'Selasa'),
 -- (12, 'TIF4509', 'SNM', 'C-103', '08:00-09:40', 'Kamis'),
 -- (12, 'TIF4505', 'BAI', 'C-101', '13:00-15:30', 'Kamis');
-
 
 DROP VIEW IF EXISTS gabungan;
 CREATE VIEW gabungan AS
@@ -311,3 +319,72 @@ INSERT INTO jadwal VALUES
 (22, 'TIF4511', 'MFS', 'C-102', '10:30-12:10', 'Jumat'),
 (23, 'TIF4512', 'ROM', 'C-103', '10:30-12:10', 'Jumat'),
 (24, 'TIF4513', 'SNM', 'C-104', '10:30-12:10', 'Jumat');
+
+// semester ganjil 2024-2025
+INSERT INTO jadwal VALUES
+(1, 'TIF1103', 'OPM', 'C-101', '08:00-10:30', 'Rabu'),
+(1, 'TIF1101', 'MFS', 'C-101', '10:30-13:00', 'Rabu'),
+(1, 'TIF1102', 'SNM', 'C-104', '14:40-16:20', 'Rabu'),
+(1, 'MAT1101', 'AGH', 'C-104', '10:30-13:00', 'Kamis'),
+(1, 'TIF1105', 'UMY', 'C-102', '08:00-10:30', 'Jumat'),
+(2, 'TIF1101', 'UMY', 'C-102', '08:00-10:30', 'Rabu'),
+(2, 'TIF1103', 'ADE', 'C-102', '10:30-13:00', 'Rabu'),
+(2, 'MAT1101', 'AGH', 'C-104', '08:00-10:30', 'Kamis'),
+(2, 'TIF1105', 'IVJ', 'C-104', '08:00-10:30', 'Jumat'),
+(2, 'TIF1102', 'NSK', 'C-101', '10:30-12:10', 'Jumat'),
+(3, 'TIF1105', 'IVJ', 'C-104', '08:00-10:30', 'Rabu'),
+(3, 'TIF1102', 'ROZ', 'C-104', '10:30-12:10', 'Rabu'),
+(3, 'MAT1101', 'MLY', 'C-102', '08:00-10:30', 'Kamis'),
+(3, 'TIF1103', 'ADE', 'C-102', '13:50-16:20', 'Kamis'),
+(3, 'TIF1101', 'FNN', 'C-101', '08:00-10:30', 'Jumat'),
+(4, 'TIF2104', 'DDA', 'C-106', '08:00-10:30', 'Rabu'),
+(4, 'TIF2101', 'LIA', 'C-105', '13:50-16:20', 'Kamis'),
+(4, 'TIF2106', 'SWL', 'C-106', '08:00-10:30', 'Jumat'),
+(4, 'TIF2102', 'ROZ', 'C-104', '10:30-12:10', 'Jumat'),
+(4, 'TIF2108', 'REN', 'C-102', '13:50-16:20', 'Jumat'),
+(5, 'TIF2106', 'SWL', 'C-103', '10:30-13:00', 'Rabu'),
+(5, 'TIF2101', 'SEF', 'C-101', '13:50-16:20', 'Rabu'),
+(5, 'TIF2104', 'SRH', 'C-104', '13:50-16:20', 'Kamis'),
+(5, 'TIF2108', 'ANN', 'C-105', '08:00-10:30', 'Jumat'),
+(5, 'TIF2102', 'ROZ', 'C-103', '13:50-15:30', 'Jumat'),
+(6, 'TIF2101', 'MYD', 'C-103', '08:00-10:30', 'Rabu'),
+(6, 'TIF2104', 'DDA', 'C-106', '10:30-13:00', 'Rabu'),
+(6, 'TIF2108', 'ANN', 'C-102', '13:50-16:20', 'Rabu'),
+(6, 'TIF2102', 'NSK', 'C-105', '08:00-09:40', 'Kamis'),
+(6, 'TIF2106', 'UMY', 'C-103', '13:50-16:20', 'Kamis'),
+(7, 'TIF3106', 'ROM', 'C-105', '10:30-13:00', 'Rabu'),
+(7, 'TIF3103', 'ULF', 'C-103', '14:40-16:20', 'Rabu'),
+(7, 'TIF3101', 'AIN', 'C-101', '08:00-09:40', 'Kamis'),
+(7, 'TIF3105', 'VEN', 'C-103', '08:00-10:30', 'Jumat'),
+(7, 'TIF3108', 'MFS', 'C-106', '10:30-12:10', 'Jumat'),
+(8, 'TIF3101', 'ROZ', 'C-103', '13:00-14:40', 'Rabu'),
+(8, 'TIF3103', 'FNN', 'C-106', '08:00-09:40', 'Kamis'),
+(8, 'TIF3106', 'AIN', 'C-106', '13:50-16:20', 'Kamis'),
+(8, 'TIF3110', 'ERN', 'C-102', '10:30-12:10', 'Jumat'),
+(8, 'TIF3105', 'ADE', 'C-105', '13:50-16:20', 'Jumat'),
+(9, 'TIF3106', 'REN', 'C-105', '08:00-10:30', 'Rabu'),
+(9, 'TIF3103', 'FNN', 'C-106', '13:00-14:40', 'Rabu'),
+(9, 'TIF3101', 'AIN', 'C-106', '14:40-16:20', 'Rabu'),
+(9, 'TIF3112', 'SNM', 'C-103', '10:30-12:10', 'Jumat'),
+(9, 'TIF3105', 'RSS', 'C-106', '13:50-16:20', 'Jumat'),
+(10, 'TIF4106', 'MAM', 'C-105', '08:00-10:30', 'Senin'),
+(10, 'TIF4104', 'ULF', 'C-104', '10:30-13:00', 'Senin'),
+(10, 'TIF4502', 'RSS', 'C-104', '13:50-15:30', 'Senin'),
+(10, 'TIF4105', 'MYD', 'C-106', '08:00-09:40', 'Selasa'),
+(10, 'TIF4101', 'NSK', 'C-105', '13:50-16:20', 'Selasa'),
+(10, 'TIF4107', 'SFR', 'C-101', '14:40-16:20', 'Kamis'),
+(10, 'TIF4108', 'MFS', 'C-101', '13:50-15:30', 'Jumat'),
+(11, 'TIF4101', 'SNM', 'C-104', '08:00-10:30', 'Senin'),
+(11, 'TIF4105', 'SRH', 'C-106', '10:30-12:10', 'Senin'),
+(11, 'TIF4107', 'LIA', 'C-105', '13:50-15:30', 'Senin'),
+(11, 'TIF4102', 'RSS', 'C-105', '08:00-09:40', 'Selasa'),
+(11, 'TIF4106', 'MAM', 'C-106', '13:50-16:20', 'Selasa'),
+(11, 'TIF4110', 'ROM', 'C-105', '13:50-15:30', 'Rabu'),
+(11, 'TIF4104', 'ULF', 'C-105', '10:30-13:00', 'Kamis'),
+(12, 'TIF4106', 'ANN', 'C-106', '08:00-10:30', 'Senin'),
+(12, 'TIF4104', 'SFR', 'C-105', '10:30-13:00', 'Senin'),
+(12, 'TIF4101', 'BAI', 'C-106', '13:50-16:20', 'Senin'),
+(12, 'TIF4105', 'SRH', 'C-104', '13:50-15:30', 'Selasa'),
+(12, 'TIF4112', 'SNM', 'C-103', '08:00-09:40', 'Kamis'),
+(12, 'TIF4107', 'VEN', 'C-101', '13:00-14:40', 'Kamis'),
+(12, 'TIF4102', 'LIA', 'C-105', '10:30-12:10', 'Jumat');
