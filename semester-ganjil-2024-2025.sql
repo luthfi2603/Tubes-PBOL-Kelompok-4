@@ -280,7 +280,6 @@ INSERT INTO `mata_kuliah` (`kode_matkul`, `nama_matkul`, `sks`) VALUES
 ('TIF4110', 'Pemrosesan dan Analisis Citra Digital', '2'),
 ('TIF4112', 'Sistem Sensor dan Aplikasi', '2'),
 ('TIF4501', 'Pemrograman Mobile', '3'),
-('TIF4502', 'Manajemen Proyek Teknologi Informasi', '2'),
 ('TIF4503', 'Enterprise Development Software', '3'),
 ('TIF4504', 'IT-Preneurship', '2'),
 ('TIF4505', 'Data Warehouse dan Bisnis Intelligence', '3'),
